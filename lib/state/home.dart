@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:res';
+import 'package:responsive_builder/responsive_builder.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -12,15 +13,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ScreenTypeLayout(
-        desktop: const Text('This is Home tyoe Desktop'),
-        table:Text('This is home type Teblet'),
-        mobile: Text('This s Home Mobole')
-
-        ),
-      
-      );
+        mobile: Text('This is mobile'),
+        tablet: Text('This is table'),
+        desktop: Text('Desktop'),
+        watch: Text('watch'),
+      ),
+    );
   }
-}
-
-class ScreenTypeLayout {
 }
