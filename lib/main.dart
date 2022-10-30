@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:myweb/state/home.dart';
+import 'package:myweb/state/show_product.dart';
 
 final Map<String, WidgetBuilder> map = {
   '/home': (BuildContext context) => Home(),
+  '/ShowProduct':(BuildContext context) => ShowProduct(),
 };
 String initialRoute = '/home';
 
