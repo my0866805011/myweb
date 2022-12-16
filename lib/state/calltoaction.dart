@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:myweb/models/user_model.dart';
 import 'package:myweb/utility/normalDialog.dart';
 
 class CallToActionLayout extends StatelessWidget {
@@ -60,17 +62,29 @@ class CallToActionLayout extends StatelessWidget {
               nomalDialog(context, 'Have Space', 'Plaese Fill Every Blank');
             } else {
               print('Ok');
-              checkAuthen();
+              checkAuthen(context);
             }
           },
           child: Text('Login')),
     );
   }
 
-  Future<Null> checkAuthen() async {
+  Future<Null> checkAuthen(BuildContext context) async {
     String path =
         'https://www.57ans.com/myweb/Api/getUserWhereUser.php?isAdd=true&user=$user';
-    await Dio().get(path).then((value) => print('### value = $value'));
+    await Dio().get(path).then((value) {
+      print('### value = $value');
+      var result = json.decode(value.data);
+      print('### result = $result ###');
+      if (value.toString() != 'null') {
+        for (var item in result) {
+          UserModel model = UserModel.fromMap(item);
+          print('Welcome ${model.name}');
+        }
+      } else {
+          nomalDialog(context, 'User False', 'No $user');       
+      }
+    });
   }
 
   Container buildPassword() {
