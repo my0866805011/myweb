@@ -62,6 +62,7 @@ class CallToActionLayout extends StatelessWidget {
               nomalDialog(context, 'Have Space', 'Plaese Fill Every Blank');
             } else {
               print('Ok');
+              
               checkAuthen(context);
             }
           },
@@ -73,9 +74,9 @@ class CallToActionLayout extends StatelessWidget {
     String path =
         'https://www.57ans.com/myweb/Api/getUserWhereUser.php?isAdd=true&user=$user';
     await Dio().get(path).then((value) {
-      print('### value = $value');
+      print(' value = $value');
       var result = json.decode(value.data);
-      print('### result = $result ###');
+      print(' result = $result ');
       if (value.toString() != 'null') {
         for (var item in result) {
           UserModel model = UserModel.fromMap(item);
@@ -89,11 +90,11 @@ class CallToActionLayout extends StatelessWidget {
 
   Container buildPassword() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 16),
+      margin: const EdgeInsets.symmetric(vertical: 16),
       width: 200,
       child: TextField(
         onChanged: (value) => password = value.trim(),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           prefixIcon: Icon(Icons.lock_clock_outlined),
           labelText: 'Pasword :',
           border: OutlineInputBorder(),
