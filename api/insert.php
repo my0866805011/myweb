@@ -19,31 +19,23 @@ if (!$conn->set_charset("utf8")) {
 if(isset($_GET))  {
     if ($_GET['isAdd'] == 'true'){
 
-        $name = $_GET['name'];
-        $type = $_GET['type'];
-        $address = $_GET['address']; 
-    
-        
-  
-    $sql="INSERT INTO `useraccount` (`id`, `name`, `type`, `address`, `phone`, `user`, `password`, `avertar`, `lat`, `lng`) VALUES (NULL, '$name', '$type', '$address', '0866805011', 'myuser', '1234', '111', '222', '333')";
-
-        $result=mysqli_query($conn,$sql);
-        if ($result){
-            echo "true";
-        }else{
-             echo "false";
-        }
-    } else echo "Welcome Inser_user.php";
-/*
-    $sql="INSERT INTO `useraccount` (`id`, `name`, `type`, `address`, `phone`, `user`, `password`, `avertar`, `lat`, `lng`) VALUES (NULL, 'phairot kanthawichit', 'user', '12/22 ', '0866805011', 'myuser', '1234', '111', '222', '333')";
+        $m_name = $_GET['name'];
+        $m_user = $_GET['user'];
+        $m_email= $_GET['email'];
+        $m_phone= $_GET['phone'];
+        $m_password=$_GET['password'];
+      
+       $sql="INSERT INTO `usertbl` (`id`, `name`, `user`, `email`, `phone`, `password`) VALUES (NULL, '$m_name', '$m_user', '$m_email', '$m_phone', '$m_password')";
+     //  $sql="INSERT INTO `usertbl` (`id`, `name`, `user`, `email`, `phone`, `password`) VALUES (NULL, '$m_name', '$m_user', '$m_email', '$m_phone', '$m_password')";
 
     $result=mysqli_query($conn,$sql);
         if ($result){
             echo "true";
         }else{
-             echo "false";
+             echo "false usertbl";
         }
-*/
+    } else echo "Welcome Inser22.php";
+
 }
 mysqli_close($conn);
 
