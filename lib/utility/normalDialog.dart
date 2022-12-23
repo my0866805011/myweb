@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-Future<Null> nomalDialog(
+Future<Null> normalDialog(
    context, String title, String message)async{
   showDialog(
     context: context,

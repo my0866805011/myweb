@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:myweb/models/user_model.dart';
+import 'package:myweb/state/my_service.dart';
 import 'package:myweb/utility/normalDialog.dart';
 
 class CallToActionLayout extends StatelessWidget {
@@ -59,10 +60,9 @@ class CallToActionLayout extends StatelessWidget {
             if ((user == null || user.isEmpty) ||
                 (password == null || password.isEmpty)) {
               print(' Ihis is space');
-              nomalDialog(context, 'Have Space', 'Plaese Fill Every Blank');
+              normalDialog(context, 'Have Space', 'Plaese Fill Every Blank');
             } else {
               print('Ok');
-              
               checkAuthen(context);
             }
           },
@@ -81,9 +81,18 @@ class CallToActionLayout extends StatelessWidget {
         for (var item in result) {
           UserModel model = UserModel.fromMap(item);
           print('Welcome ${model.name}');
+          if (password == model.password) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MyService(userModel: model),),
+                (route) => false);
+          } else {
+            normalDialog(context, 'Password False ', 'Pleae Try again');
+          }
         }
       } else {
-          nomalDialog(context, 'User False', 'No $user');       
+        normalDialog(context, 'User False', 'No $user');
       }
     });
   }
